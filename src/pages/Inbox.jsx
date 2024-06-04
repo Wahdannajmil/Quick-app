@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ChatContext } from '../contexts/ChatContext';
-import ChatList from '../components/Chat/ChatList';
-import ChatDetail from '../components/Chat/ChatDetail';
+import ChatList from '../components/chat/ChatList';
+import ChatDetail from '../components/chat/ChatDetail';
 
 const Inbox = () => {
   const { chats, addMessage } = useContext(ChatContext);

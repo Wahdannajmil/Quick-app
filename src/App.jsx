@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Todo from './pages/Todo';
 import Inbox from './pages/Inbox';
@@ -20,11 +20,11 @@ function App() {
         <div className="container mx-auto p-4">
           <TodoProvider>
             <ChatProvider>
-              <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/todo" component={Todo} />
-                <Route path="/inbox" component={Inbox} />
-              </Switch>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/todo" element={<Todo />} />
+                <Route path="/inbox" element={<Inbox />} />
+              </Routes>
             </ChatProvider>
           </TodoProvider>
         </div>

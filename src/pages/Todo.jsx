@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { TodoContext } from '../contexts/TodoContext';
-import TodoList from '../components/Todo/TodoList';
-import TodoForm from '../components/Todo/TodoForm';
+import TodoList from '../components/todo/TodoList';
+import TodoForm from '../components/todo/TodoForm';
 
 const Todo = () => {
   const { todos, addTodo, updateTodo, deleteTodo } = useContext(TodoContext);
