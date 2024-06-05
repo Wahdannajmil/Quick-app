@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faList, faInbox, faSearch } from '@fortawesome/free-solid-svg-icons';
+import {faComment } from '@fortawesome/free-regular-svg-icons';
 import Home from './pages/Home';
 import Todo from './pages/Todo';
 import Inbox from './pages/Inbox';
 import { TodoProvider } from './contexts/TodoContext';
 import { ChatProvider } from './contexts/ChatContext';
+import { faBoltLightning, faList, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   return (
@@ -36,18 +37,18 @@ function App() {
         <nav className="p-4 fixed bottom-0 right-0 m-2">
           <div className="flex flex-row space-x-4 items-center">
             <div className="flex flex-col items-center">
-              <Link to="/inbox" className="bg-white text-[#F8B76B] p-4 rounded-full flex items-center justify-center">
-                <FontAwesomeIcon icon={faInbox} size="26" />
-              </Link>
-            </div>
-            <div className="flex flex-col items-center">
               <Link to="/todo" className="text-[#a42fed] bg-white p-4 rounded-full flex items-center justify-center">
                 <FontAwesomeIcon icon={faList} size="26" />
               </Link>
             </div>
             <div className="flex flex-col items-center">
+              <Link to="/inbox" className="bg-white text-[#F8B76B] p-4 rounded-full flex items-center justify-center">
+                <FontAwesomeIcon icon={faComment} size="26" />
+              </Link>
+            </div>
+            <div className="flex flex-col items-center">
               <Link to="/" className="text-white bg-[#2F80ED] p-4 rounded-full flex items-center justify-center">
-                <FontAwesomeIcon icon={faHome} size="26" />
+                <FontAwesomeIcon icon={faBoltLightning} size="26" />
               </Link>
             </div>
           </div>
