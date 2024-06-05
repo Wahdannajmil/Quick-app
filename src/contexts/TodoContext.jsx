@@ -10,10 +10,11 @@ const TodoProvider = ({ children }) => {
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/todos')
       .then(response => {
-        const formattedTodos = response.data.slice(0, 7).map(todo => ({
+        const formattedTodos = response.data.slice(0, 20).map((todo, index) => ({
           ...todo,
           dueDate: new Date(Date.now() + Math.random() * (1000 * 3600 * 24 * 7)),
-          description: "Deskripsi untuk tugas #" + todo.id
+          description: "Deskripsi untuk tugas #" + todo.id,
+          category: index < 10 ? "Personal Errands" : "Urgent Todo"
         }));
         setTodos(formattedTodos); 
         setIsLoading(false); 
