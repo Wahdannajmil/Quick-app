@@ -8,7 +8,6 @@ const Todo = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold">Todo List</h1>
       <TodoForm addTodo={addTodo} />
       <TodoList todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo} />
     </div>

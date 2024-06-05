@@ -5,11 +5,23 @@ const TodoContext = createContext();
 
 const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/todos')
-      .then(response => setTodos(response.data.slice(0, 10))) // Mengambil 10 data pertama
-      .catch(error => console.error(error));
+      .then(response => {
+        const formattedTodos = response.data.slice(0, 7).map(todo => ({
+          ...todo,
+          dueDate: new Date(Date.now() + Math.random() * (1000 * 3600 * 24 * 7)),
+          description: "Deskripsi untuk tugas #" + todo.id
+        }));
+        setTodos(formattedTodos); 
+        setIsLoading(false); 
+      })
+      .catch(error => {
+        console.error(error);
+        setIsLoading(false);
+      });
   }, []);
 
   const addTodo = (todo) => {
@@ -25,7 +37,7 @@ const TodoProvider = ({ children }) => {
   };
 
   return (
-    <TodoContext.Provider value={{ todos, addTodo, updateTodo, deleteTodo }}>
+    <TodoContext.Provider value={{ todos, isLoading, addTodo, updateTodo, deleteTodo }}>
       {children}
     </TodoContext.Provider>
   );
