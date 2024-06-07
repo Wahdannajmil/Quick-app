@@ -16,7 +16,7 @@ const HomePage = () => {
   );
 
   return (
-    <div className="p-4">
+    <div className="p-4 font-poppins">
       <div className="relative mb-4">
         <input
           type="text"

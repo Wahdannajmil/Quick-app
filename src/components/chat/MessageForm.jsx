@@ -11,7 +11,7 @@ const MessageForm = ({ groupId, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center bg-white pb-3 pt-3 w-full">
+    <form onSubmit={handleSubmit} className="flex items-center bg-white pb-3 pt-3 w-full font-poppins">
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}

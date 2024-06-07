@@ -30,51 +30,53 @@ const TodoForm = ({ addTodo }) => {
   };
 
   return (
-    <div className="mt-4 text-right">
+    <div className="relative text-right">
       <button onClick={() => setShowForm(!showForm)} className="flex items-center text-white bg-blue-500 px-4 py-2 rounded-md shadow-md ml-auto">
         <FontAwesomeIcon icon={showForm ? faTimes : faPlus} className="mr-2" />
         {showForm ? 'Cancel' : 'New Task'}
       </button>
-      <div className={`transition-opacity duration-500 ${showForm ? 'opacity-100' : 'opacity-0 hidden'}`}>
-        <form onSubmit={handleSubmit} className="mt-4 p-4 rounded-md">
-          {error && <div className="text-red-500 mb-2">{error}</div>}
-          <div className="flex items-center mb-2">
-            <FontAwesomeIcon icon={faAlignLeft} className="text-gray-500 mr-2" />
-            <input
-              type="text"
-              placeholder="Type Task Title"
-              value={newTodoTitle}
-              onChange={(e) => setNewTodoTitle(e.target.value)}
-              className="border rounded-md px-3 py-2 flex-grow"
-            />
-          </div>
-          <div className="flex items-center mb-2">
-            <FontAwesomeIcon icon={faCalendarAlt} className="text-gray-500 mr-2" />
-            <input
-              type="date"
-              placeholder="Set Date"
-              value={dueDate}
-              onChange={(e) => setDueDate(e.target.value)}
-              className="border rounded-md px-3 py-2 flex-grow"
-            />
-          </div>
-          <div className="flex items-center mb-2">
-            <FontAwesomeIcon icon={faAlignLeft} className="text-gray-500 mr-2" />
-            <input
-              type="text"
-              placeholder="Enter description..."
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="border rounded-md px-3 py-2 flex-grow"
-            />
-          </div>
-          <div className="flex justify-end">
-            <button type="submit" className="text-white bg-blue-500 p-4 py-2 rounded-md">
-              Add
-            </button>
-          </div>
-        </form>
-      </div>
+      {showForm && (
+        <div className="absolute right-0 mt-2 w-80 bg-white rounded-md shadow-md border border-gray-300 z-10">
+          <form onSubmit={handleSubmit} className="p-4">
+            {error && <div className="text-red-500 mb-2">{error}</div>}
+            <div className="flex items-center mb-2">
+              <FontAwesomeIcon icon={faAlignLeft} className="text-gray-500 mr-2" />
+              <input
+                type="text"
+                placeholder="Type Task Title"
+                value={newTodoTitle}
+                onChange={(e) => setNewTodoTitle(e.target.value)}
+                className="border rounded-md px-3 py-2 flex-grow"
+              />
+            </div>
+            <div className="flex items-center mb-2">
+              <FontAwesomeIcon icon={faCalendarAlt} className="text-gray-500 mr-2" />
+              <input
+                type="date"
+                placeholder="Set Date"
+                value={dueDate}
+                onChange={(e) => setDueDate(e.target.value)}
+                className="border rounded-md px-3 py-2 flex-grow"
+              />
+            </div>
+            <div className="flex items-center mb-2">
+              <FontAwesomeIcon icon={faAlignLeft} className="text-gray-500 mr-2" />
+              <input
+                type="text"
+                placeholder="Enter description..."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="border rounded-md px-3 py-2 flex-grow"
+              />
+            </div>
+            <div className="flex justify-end">
+              <button type="submit" className="text-white bg-blue-500 p-2 rounded-md">
+                Add
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

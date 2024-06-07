@@ -26,7 +26,7 @@ const ChatPage = ({ history }) => {
   };
 
   return (
-    <div className="p-4 relative flex flex-col min-h-screen">
+    <div className="p-4 relative flex flex-col min-h-screen font-poppins">
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center">
           <Breadcrumb />

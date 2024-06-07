@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Home = () => (
-  <div className="min-h-screen bg-white flex flex-col p-4">
+  <div className=" bg-white flex flex-col justify-center items-center p-4 font-poppins">
     <div className="bg-white p-8 rounded-lg shadow-lg text-center max-w-lg w-full">
       <h1 className="text-4xl font-bold text-gray-800 mb-4">Welcome to Quick</h1>
       <p className="text-gray-600 mb-6">coding challenge</p>

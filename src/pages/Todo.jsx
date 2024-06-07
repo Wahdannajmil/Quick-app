@@ -4,11 +4,10 @@ import TodoList from '../components/todo/TodoList';
 import TodoForm from '../components/todo/TodoForm';
 
 const Todo = () => {
-  const { todos, addTodo, updateTodo, deleteTodo } = useContext(TodoContext);
+  const { todos, updateTodo, deleteTodo } = useContext(TodoContext);
 
   return (
     <div>
-      <TodoForm addTodo={addTodo} />
       <TodoList todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo} />
     </div>
   );

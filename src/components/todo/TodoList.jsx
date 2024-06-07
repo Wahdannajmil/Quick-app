@@ -1,13 +1,14 @@
 // import React, { useState, useContext } from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCheckSquare, faSquare, faClock, faChevronUp, faChevronDown, faEllipsisH, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+// import { faCheckSquare, faSquare, faCalendar, faClock, faPencilAlt, faTrash, faChevronUp, faChevronDown, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 // import DatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';
 // import { TodoContext } from '../../contexts/TodoContext';
 // import { formatDistanceToNow } from 'date-fns';
+// import TodoForm from './TodoForm';
 
 // const TodoList = () => {
-//   const { todos, updateTodo, deleteTodo, isLoading } = useContext(TodoContext);
+//   const { addTodo, todos, updateTodo, deleteTodo, isLoading } = useContext(TodoContext);
 //   const [visibleDetails, setVisibleDetails] = useState(null);
 //   const [showDeleteButtonId, setShowDeleteButtonId] = useState(null);
 //   const [filter, setFilter] = useState('All');
@@ -37,48 +38,49 @@
 
 //   const filteredTodos = filter === 'All' ? todos : todos.filter(todo => todo.category === filter);
 
-//   return (
-//     <div className="bg-white p-6 rounded-md shadow-md">
-//       <div className="flex justify-between items-center mb-4">
-//         <div className="relative">
-//           <button
-//             className="text-[#4f4f4f] hover:text-gray-900 p-2 w-28 bg-white border border-[#828282] rounded-md flex justify-between items-center"
-//             onClick={() => document.querySelector('.dropdown-menu').classList.toggle('hidden')}
-//           >
-//             My Task
-//             <FontAwesomeIcon icon={faChevronDown} />
-//           </button>
-//           <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-md hidden dropdown-menu">
-//             <button className="block w-full px-4 py-2 text-left hover:bg-gray-100" onClick={() => handleFilterChange('Personal Errands')}>Personal Errands</button>
-//             <button className="block w-full px-4 py-2 text-left hover:bg-gray-100" onClick={() => handleFilterChange('Urgent Todo')}>Urgent Todo</button>
-//           </div>
-//         </div>
-//       </div>
-//       {isLoading ? (
+  // return (
+  //   <div className="bg-white p-4 rounded-md shadow-md min-h-screen font-poppins">
+  //     <div className="flex justify-between items-center mb-4">
+  //       <div className="relative">
+  //         <button
+  //           className="text-[#4f4f4f] hover:text-gray-900 relative m-auto p-2 w-28 bg-white border border-[#828282] rounded-md"
+  //           onClick={() => document.querySelector('.dropdown-menu').classList.toggle('hidden')}
+  //         >
+  //           My Task
+  //           <FontAwesomeIcon icon={faChevronDown} className="ml-3" />
+  //         </button>
+  //         <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-md hidden dropdown-menu z-20">
+  //           <button className="block w-full px-4 py-2 text-left hover:bg-gray-100" onClick={() => handleFilterChange('Personal Errands')}>Personal Errands</button>
+  //           <button className="block w-full px-4 py-2 text-left hover:bg-gray-100" onClick={() => handleFilterChange('Urgent Todo')}>Urgent Todo</button>
+  //         </div>
+  //       </div>
+  //       <div>
+  //         <TodoForm addTodo={addTodo} />
+  //       </div>
+  //     </div>
+// {isLoading ? (
 //         <div>Loading...</div>
 //       ) : (
-//         <ul className="space-y-4">
+//         <ul>
 //           {filteredTodos.map(todo => (
-//             <li key={todo.id} className="p-4 flex items-start justify-between bg-gray-50 rounded-md shadow-sm">
-//               <div className="flex items-center w-full">
-//                 <button
-//                   className="mr-2"
-//                   onClick={() => updateTodo({ ...todo, completed: !todo.completed })}
-//                 >
-//                   <FontAwesomeIcon className='text-[#828282] w-5 h-5' icon={todo.completed ? faCheckSquare : faSquare} />
-//                 </button>
-//                 <div className="flex-1">
-//                   <div className="flex items-center">
-//                     <h2 className={` mr-4 text-lg font-bold ${todo.completed ? "text-[#828282] line-through" : "text-[#4f4f4f]"}`}>
-//                       {todo.title}
-//                     </h2>
-                    // <span className="text-sm m-2 text-red-600 ml-auto">
-                    //   {formatDistanceToNow(new Date(todo.dueDate), { addSuffix: true })}
-                    // </span>
-//                   </div>
-//                   {visibleDetails === todo.id && (
-//                     <>
-//                       <div className="flex items-center text-sm mt-2">
+//             <React.Fragment key={todo.id}>
+//               <li className="p-4 flex items-start justify-between bg-gray-50 rounded-md">
+//                 <div className="flex items-start">
+//                   <button
+//                     className="mr-2 mt-1"
+//                     onClick={() => updateTodo({ ...todo, completed: !todo.completed })}
+//                   >
+//                     <FontAwesomeIcon className='text-[#828282] w-5 h-5 mr-1' icon={todo.completed ? faCheckSquare : faSquare} />
+//                   </button>
+//                   <div className="flex flex-col max-w-64">
+//                     <div className="flex items-center">
+//                       <h2 className={`text-lg text-[#4f4f4f] font-bold ${todo.completed ? "text-[#828282] line-through" : ""}`}>
+//                         {todo.title}
+//                       </h2>
+//                     </div>
+
+//                     {visibleDetails === todo.id && (
+//                       <div className="flex items-center text-[#828282] text-sm mt-2">
 //                         <FontAwesomeIcon icon={faClock} className="mr-2 text-[#2f80ed]" />
 //                         <DatePicker
 //                           selected={new Date(todo.dueDate)}
@@ -90,15 +92,21 @@
 //                           className="border rounded-md px-2 py-1 text-[#4f4f4f] ml-2"
 //                         />
 //                       </div>
+//                     )}
+
+//                     {visibleDetails === todo.id && (
 //                       <div className="flex items-center text-sm mt-2">
 //                         <FontAwesomeIcon icon={faPencilAlt} className="mr-4 text-[#2f80ed]" />
 //                         <p className="text-[#828282]">{todo.description}</p>
 //                       </div>
-//                     </>
-//                   )}
+//                     )}
+//                   </div>
 //                 </div>
 //                 <div className="flex items-center">
-//                   <span className="mr-4 text-[#4f4f4f]">{formatDate(todo.dueDate)}</span>
+//                   <span className="text-sm mr-4 text-red-600 ml-auto">
+//                     {formatDistanceToNow(new Date(todo.dueDate), { addSuffix: true })}
+//                   </span>
+//                   <div className="mr-4 text-[#4f4f4f] text-sm">{formatDate(todo.dueDate)}</div>
 //                   <button className="text-[#4f4f4f] hover:text-gray-900" onClick={() => toggleDetails(todo.id)}>
 //                     <FontAwesomeIcon icon={visibleDetails === todo.id ? faChevronUp : faChevronDown} />
 //                   </button>
@@ -113,8 +121,9 @@
 //                     )}
 //                   </div>
 //                 </div>
-//               </div>
-//             </li>
+//               </li>
+//               <hr className="my-2 border-gray-400" />
+//             </React.Fragment>
 //           ))}
 //         </ul>
 //       )}
@@ -124,7 +133,6 @@
 
 // export default TodoList;
 
-
 import React, { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare, faSquare, faCalendar, faClock } from '@fortawesome/free-regular-svg-icons';
@@ -133,9 +141,10 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { TodoContext } from '../../contexts/TodoContext';
 import { formatDistanceToNow } from 'date-fns';
+import TodoForm from './TodoForm';
 
 const TodoList = () => {
-  const { todos, updateTodo, deleteTodo, isLoading } = useContext(TodoContext);
+  const { todos, updateTodo, deleteTodo, isLoading, addTodo } = useContext(TodoContext);
   const [visibleDetails, setVisibleDetails] = useState(null);
   const [showDeleteButtonId, setShowDeleteButtonId] = useState(null);
   const [filter, setFilter] = useState('All');
@@ -166,20 +175,23 @@ const TodoList = () => {
   const filteredTodos = filter === 'All' ? todos : todos.filter(todo => todo.category === filter);
 
   return (
-    <div className="bg-white p-4 rounded-md shadow-md min-h-screen">
+    <div className="bg-white p-4 rounded-md shadow-md min-h-screen font-poppins">
       <div className="flex justify-between items-center mb-4">
         <div className="relative">
           <button
-            className="text-[#4f4f4f] hover:text-gray-900 relative ml-10 p-2 w-28 bg-white border border-[#828282] rounded-md"
+            className="text-[#4f4f4f] hover:text-gray-900 relative m-auto p-2 w-28 bg-white border border-[#828282] rounded-md"
             onClick={() => document.querySelector('.dropdown-menu').classList.toggle('hidden')}
           >
             My Task
             <FontAwesomeIcon icon={faChevronDown} className="ml-3" />
           </button>
-          <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-md hidden dropdown-menu">
+          <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-md hidden dropdown-menu z-20">
             <button className="block w-full px-4 py-2 text-left hover:bg-gray-100" onClick={() => handleFilterChange('Personal Errands')}>Personal Errands</button>
             <button className="block w-full px-4 py-2 text-left hover:bg-gray-100" onClick={() => handleFilterChange('Urgent Todo')}>Urgent Todo</button>
           </div>
+        </div>
+        <div>
+          <TodoForm addTodo={addTodo} />
         </div>
       </div>
       {isLoading ? (
@@ -255,4 +267,4 @@ const TodoList = () => {
   );
 };
 
-export default TodoList;
+export default TodoList
