@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faTimes, faCalendarAlt, faAlignLeft } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTimes, faCalendarAlt, faListAlt } from '@fortawesome/free-solid-svg-icons'; // Menggunakan ikon FontAwesome yang lebih menarik
 
 const TodoForm = ({ addTodo }) => {
   const [showForm, setShowForm] = useState(false);
@@ -40,7 +40,7 @@ const TodoForm = ({ addTodo }) => {
           <form onSubmit={handleSubmit} className="p-4">
             {error && <div className="text-red-500 mb-2">{error}</div>}
             <div className="flex items-center mb-2">
-              <FontAwesomeIcon icon={faAlignLeft} className="text-gray-500 mr-2" />
+              <FontAwesomeIcon icon={faListAlt} className="text-gray-500 mr-2" />
               <input
                 type="text"
                 placeholder="Type Task Title"
@@ -50,7 +50,7 @@ const TodoForm = ({ addTodo }) => {
               />
             </div>
             <div className="flex items-center mb-2">
-              <FontAwesomeIcon icon={faCalendarAlt} className="text-gray-500 mr-2" />
+              <FontAwesomeIcon icon={faCalendarAlt} className="text-gray-500 mr-2" /> 
               <input
                 type="date"
                 placeholder="Set Date"
@@ -60,7 +60,7 @@ const TodoForm = ({ addTodo }) => {
               />
             </div>
             <div className="flex items-center mb-2">
-              <FontAwesomeIcon icon={faAlignLeft} className="text-gray-500 mr-2" />
+              <FontAwesomeIcon icon={faListAlt} className="text-gray-500 mr-2" /> 
               <input
                 type="text"
                 placeholder="Enter description..."

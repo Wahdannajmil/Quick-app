@@ -99,20 +99,27 @@ export const ChatProvider = ({ children }) => {
     }));
   };
 
-  const replyMessage = (groupId, messageId, replyBody) => {
-    const originalMessage = messages[groupId].find(msg => msg.id === messageId);
-    const replyMessage = {
-      id: Date.now(),
-      userId: currentGroup,
-      body: `${replyBody} (reply to: ${originalMessage.body})`,
-      userName: "You",
-      createdAt: new Date().toISOString(),
-    };
-    setMessages((prevMessages) => ({
-      ...prevMessages,
-      [groupId]: [replyMessage, ...prevMessages[groupId]],
-    }));
+const replyMessage = (groupId, messageId, replyBody) => {
+  const originalMessage = messages[groupId].find(msg => msg.id === messageId);
+  const replyMessage = {
+    id: Date.now(),
+    userId: currentGroup,
+    body: replyBody,
+    userName: "You",
+    createdAt: new Date().toISOString(),
+    isReply: true,
+    originalMessage: {
+      id: originalMessage.id,
+      body: originalMessage.body,
+      userName: originalMessage.userName,
+    },
   };
+  setMessages((prevMessages) => ({
+    ...prevMessages,
+    [groupId]: [replyMessage, ...prevMessages[groupId]],
+  }));
+};
+
 
   return (
     <ChatContext.Provider value={{ groups, messages, currentGroup, fetchMessages, sendMessage, editMessage, deleteMessage, replyMessage, loading }}>

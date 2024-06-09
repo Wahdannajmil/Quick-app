@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ChatContext } from '../contexts/ChatContext';
@@ -9,8 +9,9 @@ import MessageForm from '../components/chat/MessageForm';
 import Loading from '../components/chat/Loading';
 import '@fontsource/poppins';
 
-const ChatPage = ({ history }) => {
+const ChatPage = () => {
   const { groupId } = useParams();
+  const navigate = useNavigate();
   const { fetchMessages, messages, currentGroup, loading, groups, sendMessage, editMessage, deleteMessage, replyMessage } = useContext(ChatContext);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const ChatPage = ({ history }) => {
   if (loading) return <Loading />;
 
   const handleClose = () => {
-    history.push('/');
+    navigate('/');
   };
 
   return (
@@ -31,7 +32,7 @@ const ChatPage = ({ history }) => {
         <div className="flex items-center">
           <Breadcrumb />
           {group && (
-            <span className="text-xl font-bold ml-4">{group.name}</span>
+            <span className="text-blue-600 font-bold ml-4 text-xl">{group.name}</span>
           )}
         </div>
         <div className="flex items-center">
